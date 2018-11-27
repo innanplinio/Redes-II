@@ -27,11 +27,11 @@ class UDPCliente
       DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
       clientSocket.send(sendPacket);
       DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-      clientSocket.setSoTimeout(1000);
       boolean a = true;
       while(a){
           
                 try{
+                    clientSocket.setSoTimeout(1000);
                     clientSocket.receive(receivePacket);
                     a=false;
                 }catch(SocketTimeoutException ex){
