@@ -27,7 +27,19 @@ class UDPCliente
       DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
       clientSocket.send(sendPacket);
       DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-      clientSocket.receive(receivePacket);
+      clientSocket.setSoTimeout(1000);
+      boolean a = true;
+      while(a){
+          
+                try{
+                    clientSocket.receive(receivePacket);
+                    a=false;
+                }catch(SocketTimeoutException ex){
+                    System.out.println("timeout");
+                    clientSocket.send(sendPacket);
+                    clientSocket.setSoTimeout(1000);
+                }
+      }
       String modifiedSentence = new String(receivePacket.getData());
       System.out.println("FROM SERVER:" + modifiedSentence);
       clientSocket.close();
