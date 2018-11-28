@@ -17,6 +17,8 @@ class UDPCliente
 {
    public static void main(String args[]) throws Exception
    {
+      System.out.println ("-------------------Cliente-------------------");
+      System.out.print("Digite Nickname desejado: ");
       BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
       DatagramSocket clientSocket = new DatagramSocket();
       InetAddress IPAddress = InetAddress.getByName("localhost");
@@ -24,7 +26,7 @@ class UDPCliente
       byte[] receiveData = new byte[1024];
       String sentence = inFromUser.readLine();
       sendData = sentence.getBytes();
-      DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
+      DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 1995);
       clientSocket.send(sendPacket);
       DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
       boolean a = true;
@@ -44,4 +46,9 @@ class UDPCliente
       System.out.println("FROM SERVER:" + modifiedSentence);
       clientSocket.close();
    }
+   
+  
+}
+ class Game extends Thread{
+    
 }

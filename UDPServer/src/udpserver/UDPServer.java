@@ -7,6 +7,7 @@ package udpserver;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,18 +15,23 @@ import java.net.*;
  */
 class UDPServer{
     public static void main(String args[]) throws Exception{
-         DatagramSocket serverSocket = new DatagramSocket(9876);
+        System.out.println ("-------------------Servidor-------------------");
+         DatagramSocket serverSocket = new DatagramSocket(1995);
             byte[] receiveData = new byte[1024];
             byte[] sendData = new byte[1024];
+            ArrayList<Jogador> Jogadores = new ArrayList();
+            
+            
             while(true){
                   DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                   serverSocket.receive(receivePacket);
                   String sentence = new String( receivePacket.getData());
-                  System.out.println("RECEIVED: " + sentence);
                   InetAddress IPAddress = receivePacket.getAddress();
                   int port = receivePacket.getPort();
-                  String capitalizedSentence = sentence.toUpperCase();
-                  sendData = capitalizedSentence.getBytes();
+                  Jogador j = new Jogador(sentence, IPAddress);
+                  Jogadores.add(j);
+                  j.print();
+                  sendData = "Pacote Recebido".getBytes();
                   DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
                   serverSocket.send(sendPacket);
                }
@@ -34,4 +40,16 @@ class UDPServer{
 
 }
 
+class Jogador{
+    String name;
+    InetAddress ip;
+
+    public Jogador(String name, InetAddress ip) {
+        this.name = name;
+        this.ip = ip;
+    }
+    void print(){
+        System.out.println("Nickname: " + name + "\nIP: " + ip);
+    }
+}
 
