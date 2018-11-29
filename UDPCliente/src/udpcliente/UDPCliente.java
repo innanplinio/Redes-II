@@ -49,6 +49,3 @@ class UDPCliente
    
   
 }
- class Game extends Thread{
-    
-}
