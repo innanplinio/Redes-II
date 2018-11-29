@@ -30,7 +30,6 @@ class UDPServer{
                   int port = receivePacket.getPort();
                   Jogador j = new Jogador(sentence, IPAddress);
                   Jogadores.add(j);
-                  Jogadores.add(j);
                   j.print();
                   sendData = "Pacote Recebido".getBytes();
                   DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
