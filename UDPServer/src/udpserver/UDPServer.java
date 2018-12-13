@@ -66,7 +66,6 @@ class UDPServer {
                 if (Jogadores.get(i).getIp().equals(IPAddress)) {
 
                     Jogadores.get(i).setJogada(sentence.charAt(0) - '0');
-                    System.out.println("\n porta: " + Jogadores.get(i).getPort());
                     System.out.println("\nJogada do cliente: " + receivePacket.getAddress().toString() + " Jogada: " + sentence);
                 }
             }
