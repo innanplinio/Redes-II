@@ -20,7 +20,7 @@ class UDPServer {
     public static void main(String args[]) throws Exception {
         System.out.println("-------------------Servidor-------------------");
         //Inicia DatagramSocket na porta 1995
-        DatagramSocket serverSocket = new DatagramSocket(new InetSocketAddress("192.168.50.4", 1995));
+        DatagramSocket serverSocket = new DatagramSocket(new InetSocketAddress("localhost", 1995));
         DatagramPacket receivePacket, sendPacket;
         byte[] receiveData = new byte[1024];
         byte[] sendData = new byte[1024];
@@ -200,14 +200,7 @@ class UDPServer {
                         serverSocket.send(sendPacket);
                         break;
                 }
-
                 break;
         }
-
     }
-
 }
-
-
-
-
