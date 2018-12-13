@@ -44,9 +44,9 @@ class UDPServer {
             sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
             serverSocket.send(sendPacket);
             if (contaJogadores == 0) {
-                thread1 = new Confirm(Jogadores.get(0).getName(), Jogadores.get(0).getIp());        
+                thread1 = new Confirm(sentence, IPAddress);        
             } else if (contaJogadores == 1) {
-                thread2 = new Confirm(Jogadores.get(1).getName(), Jogadores.get(1).getIp());    
+                thread2 = new Confirm(sentence, IPAddress);    
             }
             contaJogadores++;
         }
@@ -57,6 +57,8 @@ class UDPServer {
         
 
         while (contaJogadas < 2) {
+            receiveData = new byte[1024];
+            sendData = new byte[1024];
             receivePacket = new DatagramPacket(receiveData, receiveData.length);
             serverSocket.receive(receivePacket);
             String sentence = new String(receivePacket.getData());
