@@ -160,6 +160,7 @@ public class JokenpoInterface extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) throws UnknownHostException, IOException {//GEN-FIRST:event_jButton4ActionPerformed
         enviaJogada(escolha);
+        System.exit(0);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
