@@ -171,7 +171,7 @@ public class JokenpoInterface extends javax.swing.JFrame {
         System.out.print("Digite Nickname desejado: ");
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
         DatagramSocket clientSocket = new DatagramSocket();
-        InetAddress IPAddress = InetAddress.getByName("localhost");
+        InetAddress IPAddress = InetAddress.getByName("192.168.43.108");
         byte[] sendData = new byte[1024];
         byte[] receiveData = new byte[1024];
         String sentence = inFromUser.readLine();
@@ -209,7 +209,8 @@ public class JokenpoInterface extends javax.swing.JFrame {
 
     public void enviaJogada(int jogada) throws SocketException, UnknownHostException, IOException {
 
-        InetAddress IPAddress = InetAddress.getByName("localhost");
+        //IP do SERVIDOR
+        InetAddress IPAddress = InetAddress.getByName("192.168.43.108");
         DatagramSocket clientSocket = new DatagramSocket(2000);
         byte[] sendData = new byte[1024];
         byte[] receiveData = new byte[1024];
@@ -254,7 +255,8 @@ public class JokenpoInterface extends javax.swing.JFrame {
             try {
                 while (true) {
                     //Recebe Mensagem do Servidor
-                    serverSocket = new DatagramSocket(new InetSocketAddress("localhost", 3000));
+                    //IP do SERVIDOR
+                    serverSocket = new DatagramSocket(new InetSocketAddress("192.168.43.108", 3000));
                     receivePacket = new DatagramPacket(receiveData, receiveData.length);
                     serverSocket.receive(receivePacket);
                     String sentence = new String(receivePacket.getData());

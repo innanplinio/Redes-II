@@ -20,7 +20,7 @@ class UDPServer {
     public static void main(String args[]) throws Exception {
         System.out.println("-------------------Servidor-------------------");
         //Inicia DatagramSocket na porta 1995
-        DatagramSocket serverSocket = new DatagramSocket(new InetSocketAddress("localhost", 1995));
+        DatagramSocket serverSocket = new DatagramSocket(new InetSocketAddress("192.168.43.108", 1995));
         DatagramPacket receivePacket, sendPacket;
         byte[] receiveData = new byte[1024];
         byte[] sendData = new byte[1024];
@@ -29,7 +29,7 @@ class UDPServer {
         Jogador j;
         int contaJogadores = 0, contaJogadas = 0;
         System.out.println("Aguardando Clientes se conectarem...");
-        Confirm thread1=null, thread2=null;
+        //Confirm thread1=null, thread2=null;
         while (contaJogadores < 2) {
             receivePacket = new DatagramPacket(receiveData, receiveData.length);
             serverSocket.receive(receivePacket);
@@ -43,15 +43,17 @@ class UDPServer {
             sendData = resposta.getBytes();
             sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
             serverSocket.send(sendPacket);
-            if (contaJogadores == 0) {
+            /*if (contaJogadores == 0) {
                 thread1 = new Confirm(sentence, IPAddress);        
             } else if (contaJogadores == 1) {
                 thread2 = new Confirm(sentence, IPAddress);    
             }
+            */
             contaJogadores++;
+        //thread1.start();
+        //thread2.start();
         }
-        thread1.start();
-        thread2.start();
+
         
 
         
